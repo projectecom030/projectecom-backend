@@ -176,7 +176,6 @@ router.post(
         mapAddress,
         status,
         listingType,
-        serviceChoice,
         amenities,
         images,
       } = req.body
@@ -205,8 +204,8 @@ router.post(
         area_sqft, bedrooms, bathrooms, parking_spaces, furnishing,
         facing, floor_number, total_floors, age_of_property,
         address_line1, address_line2, city, state, pincode,
-        latitude, longitude, google_place_id, map_address, status, listing_type, service_choice, is_featured
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        latitude, longitude, google_place_id, map_address, status, listing_type, is_featured
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           req.user.id,
           title,
@@ -234,7 +233,6 @@ router.post(
           mapAddress || null,
           status || "available",
           listingType || "sale",
-          serviceChoice || null,
           false, // isFeatured is always false for regular users
         ],
       )
@@ -324,7 +322,6 @@ router.put("/:id", async (req, res) => {
         "status",
         "is_visible",
         "listing_type",
-        "service_choice",
         // is_featured is NOT allowed
       ]
 
